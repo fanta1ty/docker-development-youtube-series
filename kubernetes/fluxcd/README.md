@@ -43,7 +43,7 @@ We can get this utility from the GitHub [Releases page](https://github.com/fluxc
 It's also worth noting that you want to ensure you get a compatible version of flux which supports your version of Kubernetes. Checkout the [prerequisites](https://fluxcd.io/flux/installation/#prerequisites) page. </br>
 
 ```
-curl -o /tmp/flux.tar.gz -sLO https://github.com/fluxcd/flux2/releases/download/v2.1.1/flux_2.1.1_linux_amd64.tar.gz
+curl -o /tmp/flux.tar.gz -sLO https://github.com/fluxcd/flux2/releases/download/v2.2.2/flux_2.2.2_linux_amd64.tar.gz
 tar -C /tmp/ -zxvf /tmp/flux.tar.gz
 mv /tmp/flux /usr/local/bin/flux
 chmod +x /usr/local/bin/flux
@@ -69,7 +69,7 @@ We'll need to generate a [personal access token (PAT)](https://github.com/settin
 Once we have a token, we can set it: 
 
 ```
-export GITHUB_TOKEN=<your-token>
+export GITHUB_TOKEN=
 ```
 
 Then we can bootstrap it using the GitHub bootstrap method
@@ -77,11 +77,11 @@ Then we can bootstrap it using the GitHub bootstrap method
 ```
 flux bootstrap github \
   --token-auth \
-  --owner=marcel-dempers \
+  --owner=fanta1ty \
   --repository=docker-development-youtube-series \
   --path=kubernetes/fluxcd/repositories/infra-repo/clusters/dev-cluster \
   --personal \
-  --branch fluxcd-2022
+  --branch master
 
 flux check
 
@@ -225,12 +225,12 @@ To do this we just need to re-bootstrap `flux` with an addition flag
 ```
 flux bootstrap github \
   --token-auth \
-  --owner=marcel-dempers \
+  --owner=fanta1ty \
   --repository=docker-development-youtube-series \
   --path=kubernetes/fluxcd/repositories/infra-repo/clusters/dev-cluster \
   --components-extra=image-reflector-controller,image-automation-controller \
   --personal \
-  --branch fluxcd-2022
+  --branch master
 ```
 We need to create a image registry credential where we will push our image:
 
